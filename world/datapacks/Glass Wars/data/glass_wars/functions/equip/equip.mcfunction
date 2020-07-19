@@ -1,0 +1,4 @@
+execute at @e[type=item_frame,nbt={Item:{id:"minecraft:snowball"}}] as @p[distance=..2,tag=!ability_spleef] at @s if block ~ ~ ~ minecraft:light_weighted_pressure_plate run function glass_wars:equip/spleef_ball
+execute at @e[type=item_frame,nbt={Item:{id:"minecraft:fishing_rod"}}] as @p[distance=..2,tag=!ability_grappling] at @s if block ~ ~ ~ minecraft:light_weighted_pressure_plate run function glass_wars:equip/grappling_hook
+execute at @e[type=item_frame,nbt={Item:{id:"minecraft:carrot_on_a_stick"}}] as @p[distance=..2,tag=!ability_shield] at @s if block ~ ~ ~ minecraft:light_weighted_pressure_plate run function glass_wars:equip/shield
+execute at @e[type=item_frame,nbt={Item:{id:"minecraft:potion"}}] as @p[distance=..2,tag=!ability_speed] at @s if block ~ ~ ~ minecraft:light_weighted_pressure_plate run function glass_wars:equip/speed
