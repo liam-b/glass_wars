@@ -14,29 +14,45 @@ replaceitem entity @a[tag=playing_glass_wars] hotbar.1 minecraft:bow
 replaceitem entity @a[tag=playing_glass_wars] hotbar.8 minecraft:cooked_beef
 
 replaceitem entity @a[tag=playing_glass_wars] armor.head minecraft:iron_helmet
-replaceitem entity @a[tag=playing_glass_wars] armor.chest minecraft:leather_chestplate
-replaceitem entity @a[tag=playing_glass_wars] armor.legs minecraft:leather_leggings
+replaceitem entity @a[tag=playing_glass_wars] armor.chest minecraft:leather_chestplate{Enchantments:[{id:projectile_protection,lvl:2}]}
+replaceitem entity @a[tag=playing_glass_wars] armor.legs minecraft:leather_leggings{Enchantments:[{id:projectile_protection,lvl:2}]}
 replaceitem entity @a[tag=playing_glass_wars] armor.feet minecraft:iron_boots{Enchantments:[{id:feather_falling,lvl:2}]}
 clear @a[tag=playing_glass_wars] glass_bottle
 
 execute as @a[tag=playing_glass_wars,nbt={Inventory:[{Slot:6b,id:"minecraft:glass"}]}] run replaceitem entity @s hotbar.6 air
 execute as @a[tag=playing_glass_wars,nbt={Inventory:[{Slot:7b,id:"minecraft:glass"}]}] run replaceitem entity @s hotbar.7 air
-execute as @a[tag=playing_glass_wars,nbt={Inventory:[{Slot:9b,id:"minecraft:glass"}]}] run replaceitem entity @s inventory.0 air
+# execute as @a[tag=playing_glass_wars,nbt={Inventory:[{Slot:9b,id:"minecraft:glass"}]}] run replaceitem entity @s inventory.0 air
+replaceitem entity @a[tag=playing_glass_wars] inventory.0 air
+
+execute as @a[tag=playing_glass_wars,nbt={Inventory:[{Slot:7b,id:"minecraft:carrot_on_a_stick"}]}] run replaceitem entity @s hotbar.7 air
+execute as @a[tag=playing_glass_wars,nbt={Inventory:[{Slot:7b,id:"minecraft:snowball"}]}] run replaceitem entity @s hotbar.7 air
+execute as @a[tag=playing_glass_wars,nbt={Inventory:[{Slot:7b,id:"minecraft:fishing_rod"}]}] run replaceitem entity @s hotbar.7 air
 
 # data modify entity @e[tag=hellfireball,limit=1] Motion set value [0.0,-3.0,0.0]
 execute as @e[tag=hellfireball] run data modify entity @s Motion set value [0.0,-3.0,0.0]
-execute as @e[tag=hellfireball,limit=1] at @s as @s[y=-10,dy=10] run kill @s
+execute as @e[tag=hellfireball] positioned as @s as @s[y=15,dy=2] run setblock ~ ~-1 ~ glass keep
+# execute at @e[tag=hellfireball] run setblock ~ ~1 ~ glass keep
+# execute at @e[tag=hellfireball] as @p[distance=..3.5] run setblock ~ ~-1 ~ glass keep
+
+# execute at @e[tag=hellfireball] positioned ~2 ~ ~ as @p[distance=..2] at @s run setblock ~ ~-1 ~ glass keep
+# execute at @e[tag=hellfireball] positioned ~-2 ~ ~ as @p[distance=..2] at @s run setblock ~ ~-1 ~ glass keep
+# execute at @e[tag=hellfireball] positioned ~ ~ ~2 as @p[distance=..2] at @s run setblock ~ ~-1 ~ glass keep
+# execute at @e[tag=hellfireball] positioned ~ ~ ~-2 as @p[distance=..2] at @s run setblock ~ ~-1 ~ glass keep
+# execute at @e[tag=hellfireball] positioned ~2 ~ ~2 as @p[distance=..2] at @s run setblock ~ ~-1 ~ glass keep
+# execute at @e[tag=hellfireball] positioned ~-2 ~ ~-2 as @p[distance=..2] at @s run setblock ~ ~-1 ~ glass keep
+# execute at @e[tag=hellfireball] positioned ~-2 ~ ~2 as @p[distance=..2] at @s run setblock ~ ~-1 ~ glass keep
+# execute at @e[tag=hellfireball] positioned ~2 ~ ~-2 as @p[distance=..2] at @s run setblock ~ ~-1 ~ glass keep
 
 # remove air above bedrock
-execute positioned -195 16 -308 positioned ~40 ~ ~ run fill ~ ~ ~ ~ ~1 ~ air
-execute positioned -195 16 -308 positioned ~-40 ~ ~ run fill ~ ~ ~ ~ ~1 ~ air
-execute positioned -195 16 -308 positioned ~ ~ ~40 run fill ~ ~ ~ ~ ~1 ~ air
-execute positioned -195 16 -308 positioned ~ ~ ~-40 run fill ~ ~ ~ ~ ~1 ~ air
+execute positioned 0 16 0 positioned ~40 ~ ~ run fill ~ ~ ~ ~ ~1 ~ air
+execute positioned 0 16 0 positioned ~-40 ~ ~ run fill ~ ~ ~ ~ ~1 ~ air
+execute positioned 0 16 0 positioned ~ ~ ~40 run fill ~ ~ ~ ~ ~1 ~ air
+execute positioned 0 16 0 positioned ~ ~ ~-40 run fill ~ ~ ~ ~ ~1 ~ air
 
-execute positioned -195 16 -308 positioned ~33 ~ ~33 run fill ~ ~ ~ ~ ~1 ~ air
-execute positioned -195 16 -308 positioned ~-33 ~ ~-33 run fill ~ ~ ~ ~ ~1 ~ air
-execute positioned -195 16 -308 positioned ~33 ~ ~-33 run fill ~ ~ ~ ~ ~1 ~ air
-execute positioned -195 16 -308 positioned ~-33 ~ ~33 run fill ~ ~ ~ ~ ~1 ~ air
+execute positioned 0 16 0 positioned ~33 ~ ~33 run fill ~ ~ ~ ~ ~1 ~ air
+execute positioned 0 16 0 positioned ~-33 ~ ~-33 run fill ~ ~ ~ ~ ~1 ~ air
+execute positioned 0 16 0 positioned ~33 ~ ~-33 run fill ~ ~ ~ ~ ~1 ~ air
+execute positioned 0 16 0 positioned ~-33 ~ ~33 run fill ~ ~ ~ ~ ~1 ~ air
 
 # cinda buffs
 effect give CindaBCatLexy minecraft:resistance 1 0 true
@@ -74,7 +90,7 @@ execute as @e[scores={deathTrigger=1..,deathStreak=3..},tag=playing_glass_wars] 
 scoreboard players set @e[scores={deathTrigger=1..},tag=playing_glass_wars] deathTrigger 0
 
 # glass path
-execute as @a[nbt={SelectedItem:{id:"minecraft:glass"}},tag=!glass_path_blocked,tag=playing_glass_wars] at @s if block ~ ~-1 ~ air run tag @s add placing_glass_path
+execute as @a[nbt={SelectedItem:{id:"minecraft:glass"}},tag=!glass_path_blocked,tag=playing_glass_wars,y=0,dy=50,x=-40,dx=80,z=-40,dz=80] at @s if block ~ ~-1 ~ air run tag @s add placing_glass_path
 execute at @a[tag=placing_glass_path,tag=playing_glass_wars] run setblock ~ ~-1 ~ glass keep
 execute as @a[tag=placing_glass_path,nbt=!{ActiveEffects:[{Id:1b}]},tag=playing_glass_wars] run clear @s glass 1
 execute as @a[tag=placing_glass_path,tag=playing_glass_wars] run tag @s remove placing_glass_path
@@ -87,7 +103,6 @@ execute as @e[tag=grenade_tracker] at @s unless entity @e[tag=tracked_grenade,di
 execute at @e[tag=grenade_detonation] run summon creeper ~ ~ ~ {Fuse:0,ExplosionRadius:1}
 # execute at @e[tag=grenade_detonation] run summon area_effect_cloud ~ ~1 ~ {Particle:"block air",Duration:10,Radius:2f,WaitTime:0,Effects:[{Id:20,Amplifier:1,Duration:24,ShowParticles:0b}],Potion:"minecraft:water"}
 kill @e[tag=grenade_detonation]
-
 execute as @e[tag=grenade_tracker] at @s run tp @s @e[tag=tracked_grenade,sort=nearest,limit=1]
 
 # tnt
@@ -114,7 +129,7 @@ execute as @a[scores={shieldTrigger=1..},nbt={SelectedItem:{id:"minecraft:carrot
 scoreboard players set @a[scores={shieldTrigger=1..}] shieldTrigger 0
 
 # grappling hook
-execute as @a[tag=glass_wars_grappling_connected,tag=!glass_wars_grappling_trigger,nbt={SelectedItem:{id:"minecraft:fishing_rod",tag:{Damage:63}}}] run replaceitem entity @s weapon.mainhand minecraft:air
+execute as @a[tag=!glass_wars_grappling_connected,tag=!glass_wars_grappling_trigger,nbt={SelectedItem:{id:"minecraft:fishing_rod",tag:{Damage:63}}}] run replaceitem entity @s weapon.mainhand minecraft:air
 execute as @a[tag=glass_wars_grappling_connected,tag=!glass_wars_grappling_trigger,nbt={SelectedItem:{id:"minecraft:fishing_rod",tag:{Damage:48}}}] run replaceitem entity @s weapon.mainhand minecraft:fishing_rod{Damage:63,display:{Name:"{\"text\":\"Grappling Hook\",\"italic\":\"false\"}"}}
 execute as @a[tag=glass_wars_grappling_connected,tag=!glass_wars_grappling_trigger,nbt={SelectedItem:{id:"minecraft:fishing_rod",tag:{Damage:32}}}] run replaceitem entity @s weapon.mainhand minecraft:fishing_rod{Damage:48,display:{Name:"{\"text\":\"Grappling Hook\",\"italic\":\"false\"}"}}
 execute as @a[tag=glass_wars_grappling_connected,tag=!glass_wars_grappling_trigger,nbt={SelectedItem:{id:"minecraft:fishing_rod",tag:{Damage:16}}}] run replaceitem entity @s weapon.mainhand minecraft:fishing_rod{Damage:32,display:{Name:"{\"text\":\"Grappling Hook\",\"italic\":\"false\"}"}}
@@ -153,9 +168,11 @@ execute at @a[nbt={ActiveEffects:[{Id:18b, Amplifier: 0b}]}] run particle minecr
 # death streak
 scoreboard players set @e[scores={killTrigger=1..},tag=playing_glass_wars] deathStreak 0
 
-# ability tracker
+# kill tracker
 execute as @a[scores={killTrigger=1..},tag=playing_glass_wars] run xp add @s 3 points
 execute at @a[scores={killTrigger=1..}] run playsound minecraft:block.anvil.land player @a
+scoreboard players set @a[scores={killTrigger=1..},tag=playing_glass_wars,level=1] killTrigger 0
+
 execute as @a[scores={killTrigger=1..}] run title @s times 1 30 5
 execute as @a[scores={killTrigger=1..}] run title @s subtitle "Ability ready"
 execute as @a[scores={killTrigger=1..}] run title @s title ""
@@ -167,22 +184,23 @@ execute as @a[scores={killTrigger=1..},tag=ability_spleef] store result score @s
 replaceitem entity @a[tag=ability_spleef,scores={killTrigger=1..,dummy=0}] hotbar.6 minecraft:snowball{display:{Name:"{\"text\":\"Spleef-ball\",\"italic\":\"false\"}"}}
 give @a[tag=ability_spleef,scores={killTrigger=1..,dummy=1..}] minecraft:snowball{display:{Name:"{\"text\":\"Spleef-ball\",\"italic\":\"false\"}"}}
 
-# ability highlight
+# highlight
 team leave @a[nbt=!{Inventory:[{id:"minecraft:experience_bottle"}]},nbt=!{Inventory:[{id:"minecraft:snowball"}]},nbt=!{Inventory:[{id:"minecraft:carrot_on_a_stick"}]},nbt=!{Inventory:[{id:"minecraft:fishing_rod"}]},nbt=!{Inventory:[{id:"minecraft:potion"}]},nbt=!{Inventory:[{id:"minecraft:warped_fungus_on_a_stick"}]},nbt=!{ActiveEffects:[{Id:1b}]},nbt=!{ActiveEffects:[{Id:2b}]}]
 team join white @a[nbt={Inventory:[{id:"minecraft:snowball"}]}]
 team join blue @a[nbt={Inventory:[{id:"minecraft:carrot_on_a_stick"}]}]
 team join green @a[nbt={Inventory:[{id:"minecraft:fishing_rod"}]}]
 team join black @a[nbt={Inventory:[{id:"minecraft:warped_fungus_on_a_stick"}]}]
-team join black @a[tag=using_ultimate]
+team join black @a[nbt={ActiveEffects:[{Id:1b}]}]
 team join red @a[nbt={ActiveEffects:[{Id:2b}]}]
 team join yellow @a[nbt={Inventory:[{id:"minecraft:experience_bottle"}]}]
 
-effect clear @a[nbt=!{ActiveEffects:[{Id:1b}]},nbt=!{ActiveEffects:[{Id:2b}]}] minecraft:glowing
+effect clear @a minecraft:glowing
 effect give @a[nbt={Inventory:[{id:"minecraft:snowball"}]}] minecraft:glowing 1000000 0 true
 effect give @a[nbt={Inventory:[{id:"minecraft:carrot_on_a_stick"}]}] minecraft:glowing 1000000 0 true
 effect give @a[nbt={Inventory:[{id:"minecraft:fishing_rod"}]}] minecraft:glowing 1000000 0 true
 effect give @a[nbt={Inventory:[{id:"minecraft:potion"}]}] minecraft:glowing 1000000 0 true
 effect give @a[nbt={ActiveEffects:[{Id:1b}]}] minecraft:glowing 1000000 0 true
+effect give @a[nbt={ActiveEffects:[{Id:2b}]}] minecraft:glowing 1000000 0 true
 effect give @a[nbt={Inventory:[{id:"minecraft:warped_fungus_on_a_stick"}]}] minecraft:glowing 1000000 0 true
 effect give @a[nbt={Inventory:[{id:"minecraft:experience_bottle"}]}] minecraft:glowing 1000000 0 true
 
@@ -191,19 +209,19 @@ scoreboard players set @a[scores={killTrigger=1..},tag=playing_glass_wars] killT
 # killstreak
 execute as @a[level=1] run title @s subtitle {"text":"Ultimate ready","color":"red"}
 execute as @a[level=1] run title @s title ""
-replaceitem entity @a[level=1,tag=ultimate_beast] hotbar.6 minecraft:warped_fungus_on_a_stick{display:{Name:"{\"text\":\"Beast of The Hunt\",\"color\":\"red\",\"italic\":\"false\"}"}}
-replaceitem entity @a[level=1,tag=ultimate_hellfire] hotbar.6 minecraft:experience_bottle{display:{Name:"{\"text\":\"Hellfire\",\"color\":\"yellow\",\"italic\":\"false\"}"}}
+replaceitem entity @a[level=1,tag=ultimate_beast] hotbar.7 minecraft:warped_fungus_on_a_stick{display:{Name:"{\"text\":\"Beast of The Hunt\",\"color\":\"red\",\"italic\":\"false\"}"}}
+replaceitem entity @a[level=1,tag=ultimate_hellfire] hotbar.7 minecraft:experience_bottle{display:{Name:"{\"text\":\"Hellfire\",\"color\":\"yellow\",\"italic\":\"false\"}"}}
 execute as @a[level=1] run xp set @s 0 points
 execute as @a[level=1] run xp set @s 0 levels
 
 # ultimate
 execute at @e[type=minecraft:experience_bottle] run tag @p add triggered_ultimate
 kill @e[type=minecraft:experience_bottle]
-execute as @a[scores={ultTrigger=1..},tag=playing_glass_wars] run tag @p add triggered_ultimate
+tag @a[scores={ultTrigger=1..},tag=playing_glass_wars] add triggered_ultimate
 scoreboard players set @a[scores={ultTrigger=1..},tag=playing_glass_wars] ultTrigger 0
 
-execute as @a[tag=triggered_ultimate,tag=ultimate_hellfire] run function glass_wars:ultimates/hellfire/trigger
-execute as @a[tag=triggered_ultimate,tag=ultimate_beast] run function glass_wars:ultimates/beast/trigger
+execute as @a[tag=ultimate_hellfire,tag=triggered_ultimate] run function glass_wars:ultimates/hellfire/trigger
+execute as @a[tag=ultimate_beast,tag=triggered_ultimate] run function glass_wars:ultimates/beast/trigger
 
 tag @a[tag=triggered_ultimate] add during_ultimate
 tag @a[tag=triggered_ultimate] remove triggered_ultimate
