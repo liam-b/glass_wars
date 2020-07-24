@@ -16,16 +16,17 @@ schedule clear glass_wars:supplies/arrow
 clear @a
 xp set @a 0 levels
 kill @e[type=item]
+tp @a 256 16 0
 
 # move players to spawnpoints
-execute positioned 0 100 0 as @p[tag=preparing_for_glass_wars,distance=..20] positioned 0 16 0 run tp @s ~40 ~ ~
-execute positioned 0 100 0 as @p[tag=preparing_for_glass_wars,distance=..20] positioned 0 16 0 run tp @s ~-40 ~ ~
-execute positioned 0 100 0 as @p[tag=preparing_for_glass_wars,distance=..20] positioned 0 16 0 run tp @s ~ ~ ~40
-execute positioned 0 100 0 as @p[tag=preparing_for_glass_wars,distance=..20] positioned 0 16 0 run tp @s ~ ~ ~-40
-execute positioned 0 100 0 as @p[tag=preparing_for_glass_wars,distance=..20] positioned 0 16 0 run tp @s ~33 ~ ~33
-execute positioned 0 100 0 as @p[tag=preparing_for_glass_wars,distance=..20] positioned 0 16 0 run tp @s ~-33 ~ ~-33
-execute positioned 0 100 0 as @p[tag=preparing_for_glass_wars,distance=..20] positioned 0 16 0 run tp @s ~33 ~ ~-33
-execute positioned 0 100 0 as @p[tag=preparing_for_glass_wars,distance=..20] positioned 0 16 0 run tp @s ~-33 ~ ~33
+execute positioned 256 16 0 as @p[tag=preparing_for_glass_wars,distance=..100] positioned 0 16 0 run tp @s ~40 ~ ~
+execute positioned 256 26 0 as @p[tag=preparing_for_glass_wars,distance=..100] positioned 0 16 0 run tp @s ~-40 ~ ~
+execute positioned 256 26 0 as @p[tag=preparing_for_glass_wars,distance=..100] positioned 0 16 0 run tp @s ~ ~ ~-40
+execute positioned 256 26 0 as @p[tag=preparing_for_glass_wars,distance=..100] positioned 0 16 0 run tp @s ~ ~ ~40
+execute positioned 256 26 0 as @p[tag=preparing_for_glass_wars,distance=..100] positioned 0 16 0 run tp @s ~33 ~ ~33
+execute positioned 256 26 0 as @p[tag=preparing_for_glass_wars,distance=..100] positioned 0 16 0 run tp @s ~-33 ~ ~-33
+execute positioned 256 26 0 as @p[tag=preparing_for_glass_wars,distance=..100] positioned 0 16 0 run tp @s ~33 ~ ~-33
+execute positioned 256 26 0 as @p[tag=preparing_for_glass_wars,distance=..100] positioned 0 16 0 run tp @s ~-33 ~ ~33
 execute as @a[tag=preparing_for_glass_wars] at @s run spawnpoint
 
 # reset scoreboard
