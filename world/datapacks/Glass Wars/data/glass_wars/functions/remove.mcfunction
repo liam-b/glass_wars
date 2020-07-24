@@ -1,3 +1,3 @@
 clear @a
-tp @a 0 101 0
-spawnpoint @a 0 101 0
+tp @a 256 16 0
+spawnpoint @a 256 16 0
