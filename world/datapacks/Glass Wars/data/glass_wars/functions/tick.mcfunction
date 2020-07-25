@@ -11,6 +11,9 @@ scoreboard players set @a[scores={bellTrigger=1..}] bellTrigger 0
 execute as @a run scoreboard players operation @s score = @s deathCount
 execute as @a run scoreboard players operation @s score -= @s killCount
 
+scoreboard players set @a[tag=!intialised_rating] rating 50
+tag @a[tag=!intialised_rating] add intialised_rating
+
 # permanent
 replaceitem entity @a[tag=playing_glass_wars,scores={deathStreak=..2}] hotbar.0 minecraft:wooden_sword
 replaceitem entity @a[tag=playing_glass_wars,scores={deathStreak=3..}] hotbar.0 minecraft:iron_sword
@@ -188,7 +191,7 @@ replaceitem entity @a[tag=ability_spleef,scores={killTrigger=1..,dummy=0}] hotba
 give @a[tag=ability_spleef,scores={killTrigger=1..,dummy=1..}] minecraft:snowball{display:{Name:"{\"text\":\"Spleef-ball\",\"italic\":\"false\"}"}}
 
 # highlight
-team leave @a[tag=playing_glass_wars,nbt=!{Inventory:[{Slot:6b},{Slot:7b}]},nbt=!{ActiveEffects:[{Id:1b},{Id:2b},{Id:12b}]}]
+team leave @a[tag=playing_glass_wars,nbt=!{Inventory:[{Slot:6b},{Slot:7b}]},nbt=!{ActiveEffects:[{Id:1b}]},nbt=!{ActiveEffects:[{Id:2b}]},nbt=!{ActiveEffects:[{Id:12b}]}]
 team join white @a[tag=!during_ultimate,nbt={Inventory:[{id:"minecraft:snowball"}]}]
 team join blue @a[tag=!during_ultimate,nbt={Inventory:[{id:"minecraft:carrot_on_a_stick"}]}]
 team join green @a[tag=!during_ultimate,nbt={Inventory:[{id:"minecraft:fishing_rod"}]}]
@@ -199,7 +202,7 @@ team join red @a[nbt={ActiveEffects:[{Id:2b}]}]
 team join yellow @a[nbt={Inventory:[{id:"minecraft:experience_bottle"}]}]
 team join yellow @a[nbt={ActiveEffects:[{Id:12b}]}]
 
-effect clear @a[nbt=!{Inventory:[{Slot:6b},{Slot:7b}]},nbt=!{ActiveEffects:[{Id:1b},{Id:2b},{Id:12b}]}] minecraft:glowing
+effect clear @a[nbt=!{Inventory:[{Slot:6b},{Slot:7b}]},nbt=!{ActiveEffects:[{Id:1b}]},nbt=!{ActiveEffects:[{Id:2b}]},nbt=!{ActiveEffects:[{Id:12b}]}] minecraft:glowing
 effect give @a[tag=playing_glass_wars,nbt={Inventory:[{Slot:6b}]}] minecraft:glowing 1000000 0 true
 effect give @a[tag=playing_glass_wars,nbt={Inventory:[{Slot:7b}]}] minecraft:glowing 1000000 0 true
 effect give @a[tag=playing_glass_wars,nbt={ActiveEffects:[{Id:1b}]}] minecraft:glowing 1000000 0 true
