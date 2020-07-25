@@ -105,7 +105,6 @@ tag @e[type=egg,tag=!tracked_grenade] add tracked_grenade
 
 execute as @e[tag=grenade_tracker] at @s unless entity @e[tag=tracked_grenade,distance=..2] run tag @s add grenade_detonation
 execute at @e[tag=grenade_detonation] run summon creeper ~ ~ ~ {Fuse:0,ExplosionRadius:1}
-# execute at @e[tag=grenade_detonation] run summon area_effect_cloud ~ ~1 ~ {Particle:"block air",Duration:10,Radius:2f,WaitTime:0,Effects:[{Id:20,Amplifier:1,Duration:24,ShowParticles:0b}],Potion:"minecraft:water"}
 kill @e[tag=grenade_detonation]
 execute as @e[tag=grenade_tracker] at @s run tp @s @e[tag=tracked_grenade,sort=nearest,limit=1]
 
@@ -189,24 +188,23 @@ replaceitem entity @a[tag=ability_spleef,scores={killTrigger=1..,dummy=0}] hotba
 give @a[tag=ability_spleef,scores={killTrigger=1..,dummy=1..}] minecraft:snowball{display:{Name:"{\"text\":\"Spleef-ball\",\"italic\":\"false\"}"}}
 
 # highlight
-team leave @a[nbt=!{Inventory:[{id:"minecraft:experience_bottle"}]},nbt=!{Inventory:[{id:"minecraft:snowball"}]},nbt=!{Inventory:[{id:"minecraft:carrot_on_a_stick"}]},nbt=!{Inventory:[{id:"minecraft:fishing_rod"}]},nbt=!{Inventory:[{id:"minecraft:potion"}]},nbt=!{Inventory:[{id:"minecraft:warped_fungus_on_a_stick"}]},nbt=!{ActiveEffects:[{Id:1b}]},nbt=!{ActiveEffects:[{Id:2b}]}]
-team join white @a[nbt={Inventory:[{id:"minecraft:snowball"}]}]
-team join blue @a[nbt={Inventory:[{id:"minecraft:carrot_on_a_stick"}]}]
-team join green @a[nbt={Inventory:[{id:"minecraft:fishing_rod"}]}]
+team leave @a[tag=playing_glass_wars,nbt=!{Inventory:[{Slot:6b},{Slot:7b}]},nbt=!{ActiveEffects:[{Id:1b},{Id:2b},{Id:12b}]}]
+team join white @a[tag=!during_ultimate,nbt={Inventory:[{id:"minecraft:snowball"}]}]
+team join blue @a[tag=!during_ultimate,nbt={Inventory:[{id:"minecraft:carrot_on_a_stick"}]}]
+team join green @a[tag=!during_ultimate,nbt={Inventory:[{id:"minecraft:fishing_rod"}]}]
+
 team join black @a[nbt={Inventory:[{id:"minecraft:warped_fungus_on_a_stick"}]}]
 team join black @a[nbt={ActiveEffects:[{Id:1b}]}]
 team join red @a[nbt={ActiveEffects:[{Id:2b}]}]
 team join yellow @a[nbt={Inventory:[{id:"minecraft:experience_bottle"}]}]
+team join yellow @a[nbt={ActiveEffects:[{Id:12b}]}]
 
-effect clear @a minecraft:glowing
-effect give @a[nbt={Inventory:[{id:"minecraft:snowball"}]}] minecraft:glowing 1000000 0 true
-effect give @a[nbt={Inventory:[{id:"minecraft:carrot_on_a_stick"}]}] minecraft:glowing 1000000 0 true
-effect give @a[nbt={Inventory:[{id:"minecraft:fishing_rod"}]}] minecraft:glowing 1000000 0 true
-effect give @a[nbt={Inventory:[{id:"minecraft:potion"}]}] minecraft:glowing 1000000 0 true
-effect give @a[nbt={ActiveEffects:[{Id:1b}]}] minecraft:glowing 1000000 0 true
-effect give @a[nbt={ActiveEffects:[{Id:2b}]}] minecraft:glowing 1000000 0 true
-effect give @a[nbt={Inventory:[{id:"minecraft:warped_fungus_on_a_stick"}]}] minecraft:glowing 1000000 0 true
-effect give @a[nbt={Inventory:[{id:"minecraft:experience_bottle"}]}] minecraft:glowing 1000000 0 true
+effect clear @a[nbt=!{Inventory:[{Slot:6b},{Slot:7b}]},nbt=!{ActiveEffects:[{Id:1b},{Id:2b},{Id:12b}]}] minecraft:glowing
+effect give @a[tag=playing_glass_wars,nbt={Inventory:[{Slot:6b}]}] minecraft:glowing 1000000 0 true
+effect give @a[tag=playing_glass_wars,nbt={Inventory:[{Slot:7b}]}] minecraft:glowing 1000000 0 true
+effect give @a[tag=playing_glass_wars,nbt={ActiveEffects:[{Id:1b}]}] minecraft:glowing 1000000 0 true
+effect give @a[tag=playing_glass_wars,nbt={ActiveEffects:[{Id:2b}]}] minecraft:glowing 1000000 0 true
+effect give @a[tag=playing_glass_wars,nbt={ActiveEffects:[{Id:12b}]}] minecraft:glowing 1000000 0 true
 
 scoreboard players set @a[scores={killTrigger=1..},tag=playing_glass_wars] killTrigger 0
 
