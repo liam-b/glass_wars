@@ -17,6 +17,7 @@ clear @a
 xp set @a 0 levels
 kill @e[type=item]
 tp @a 256 16 0
+gamerule keepInventory false
 
 # move players to spawnpoints
 execute positioned 256 16 0 as @p[tag=preparing_for_glass_wars,distance=..100] positioned 0 16 0 run tp @s ~40 ~ ~
