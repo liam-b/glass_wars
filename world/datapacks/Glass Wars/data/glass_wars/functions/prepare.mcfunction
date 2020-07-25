@@ -30,8 +30,9 @@ execute positioned 256 26 0 as @p[tag=preparing_for_glass_wars,distance=..100] p
 execute as @a[tag=preparing_for_glass_wars] at @s run spawnpoint
 
 # reset scoreboard
+scoreboard players reset * score
+scoreboard objectives setdisplay sidebar score
 scoreboard players reset * deathCount
-scoreboard objectives setdisplay sidebar deathCount
 scoreboard players reset * killCount
 scoreboard objectives setdisplay list killCount
 scoreboard players set * deathStreak 0

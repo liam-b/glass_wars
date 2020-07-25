@@ -7,6 +7,10 @@ execute positioned 0 121 0 as @p[distance=..0.5] if block ~ ~ ~ minecraft:light_
 execute as @a[scores={bellTrigger=1..}] run function glass_wars:prepare
 scoreboard players set @a[scores={bellTrigger=1..}] bellTrigger 0
 
+# scoreboard
+execute as @a run scoreboard players operation @s score = @s deathCount
+execute as @a run scoreboard players operation @s score -= @s killCount
+
 # permanent
 replaceitem entity @a[tag=playing_glass_wars,scores={deathStreak=..2}] hotbar.0 minecraft:wooden_sword
 replaceitem entity @a[tag=playing_glass_wars,scores={deathStreak=3..}] hotbar.0 minecraft:iron_sword
